@@ -96,7 +96,7 @@ function App() {
   // ---------- CONTENT RENDERING ----------
   return (
     <div className="App">
-      {user && <Sidebar user={user} setView={setView} handleLogout={handleLogout} view={view} />}
+      {user && <Sidebar user={user} setView={setView} handleLogout={handleLogout} view={view} theme={theme} toggleTheme={toggleTheme} />}
       <div className="app-main-content">
         <Topbar 
           theme={theme} 

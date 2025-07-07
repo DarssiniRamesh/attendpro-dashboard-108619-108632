@@ -1,26 +1,28 @@
 import React, { useState } from 'react';
 
 // PUBLIC_INTERFACE
-function MobileMenu({ user, setView, handleLogout, view }) {
+function MobileMenu({ user, setView, handleLogout, view, theme, toggleTheme }) {
   /**
    * Mobile hamburger menu component for responsive navigation
    * @param {Object} user - Current user object
    * @param {Function} setView - Function to set current view
    * @param {Function} handleLogout - Function to handle user logout
    * @param {string} view - Current active view
+   * @param {string} theme - Current theme (light/dark)
+   * @param {Function} toggleTheme - Function to toggle theme
    */
   const [isOpen, setIsOpen] = useState(false);
 
   const navs = user?.role === "admin"
     ? [
-        { label: "Dashboard", view: "admin" },
-        { label: "Leave Requests", view: "leave-requests" },
-        { label: "Analytics", view: "analytics" },
+        { label: "📊 Dashboard", view: "admin" },
+        { label: "📋 Leave Requests", view: "leave-requests" },
+        { label: "📈 Analytics", view: "analytics" },
       ]
     : [
-        { label: "Dashboard", view: "user" },
-        { label: "Attendance", view: "attendance" },
-        { label: "Apply Leave", view: "apply-leave" },
+        { label: "🏠 Dashboard", view: "user" },
+        { label: "📅 Attendance", view: "attendance" },
+        { label: "🏖️ Apply Leave", view: "apply-leave" },
       ];
 
   const handleNavClick = (navView) => {
@@ -141,23 +143,57 @@ function MobileMenu({ user, setView, handleLogout, view }) {
         <div style={{ padding: "20px" }}>
           <button
             style={{
-              background: "none",
+              background: theme === "light" 
+                ? "linear-gradient(135deg, #4a5568, #2d3748)" 
+                : "linear-gradient(135deg, #fbb040, #f7931e)",
+              color: theme === "light" ? "#ffffff" : "#1a202c",
               border: "none",
-              color: "#d32f2f",
-              padding: "10px 0",
+              padding: "12px 16px",
               width: "100%",
               textAlign: "left",
               cursor: "pointer",
-              fontSize: "16px"
+              fontSize: "16px",
+              borderRadius: "8px",
+              marginBottom: "10px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px"
+            }}
+            onClick={() => {
+              toggleTheme();
+              setIsOpen(false);
+            }}
+          >
+            <span>{theme === "light" ? "🌙" : "☀️"}</span>
+            <span>{theme === "light" ? "Dark Mode" : "Light Mode"}</span>
+          </button>
+          
+          <button
+            style={{
+              background: "linear-gradient(135deg, #e53e3e, #c53030)",
+              color: "#ffffff",
+              border: "none",
+              padding: "12px 16px",
+              width: "100%",
+              textAlign: "left",
+              cursor: "pointer",
+              fontSize: "16px",
+              borderRadius: "8px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px"
             }}
             onClick={handleLogoutClick}
           >
-            Logout
+            <span>🚪</span>
+            <span>Logout</span>
           </button>
+          
           <div style={{ 
-            marginTop: "10px", 
+            marginTop: "15px", 
             fontSize: "14px", 
-            color: "var(--text-secondary)" 
+            color: "var(--text-secondary)",
+            textAlign: "center"
           }}>
             <strong>{user.name}</strong><br />
             ({user.role})
