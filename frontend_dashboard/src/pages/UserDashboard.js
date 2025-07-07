@@ -137,13 +137,14 @@ function UserDashboard({ user, setView }) {
               <h3 style={{ margin: 0, color: "var(--text-primary)" }}>Attendance History</h3>
             </div>
             <div style={{ 
-              fontSize: 18, 
+              fontSize: "1.125rem", 
               margin: "16px 0", 
-              color: "var(--text-secondary)",
+              color: "#4a4f54",
               textAlign: "center",
-              flex: 1
+              flex: 1,
+              fontStyle: "italic"
             }}>
-              View your complete attendance calendar and track your progress
+              View your attendance calendar and track your progress
             </div>
           </div>
           <button 
