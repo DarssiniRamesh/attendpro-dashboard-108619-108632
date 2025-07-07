@@ -95,11 +95,18 @@ function App() {
 
   // ---------- CONTENT RENDERING ----------
   return (
-    <div className="App" style={{ minHeight: "100vh", display: "flex" }}>
+    <div className="App">
       {user && <Sidebar user={user} setView={setView} handleLogout={handleLogout} view={view} />}
-      <div style={{ flex: 1, minHeight: "100vh", background: "var(--bg-primary)", color: "var(--text-primary)" }}>
-        <Topbar theme={theme} toggleTheme={toggleTheme} />
-        <main style={{ padding: "24px" }}>
+      <div className="app-main-content">
+        <Topbar 
+          theme={theme} 
+          toggleTheme={toggleTheme} 
+          user={user}
+          setView={setView}
+          handleLogout={handleLogout}
+          view={view}
+        />
+        <main>
           {renderView()}
         </main>
       </div>

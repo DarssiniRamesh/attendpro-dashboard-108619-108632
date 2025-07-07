@@ -26,10 +26,10 @@ function AttendanceTable({ attendance, showUser }) {
           <tr><td colSpan={showUser ? 4 : 3} style={{ color: "#888", textAlign: "center" }}>No records</td></tr>}
         {attendance.map((a, i) => (
           <tr key={i}>
-            {showUser && <td>{users.find(u => u.id === a.userId)?.name || "-"}</td>}
-            <td>{a.date}</td>
-            <td>{a.clockIn || "-"}</td>
-            <td>{a.clockOut || "-"}</td>
+            {showUser && <td data-label="Employee">{users.find(u => u.id === a.userId)?.name || "-"}</td>}
+            <td data-label="Date">{a.date}</td>
+            <td data-label="Clock In">{a.clockIn || "-"}</td>
+            <td data-label="Clock Out">{a.clockOut || "-"}</td>
           </tr>
         ))}
       </tbody>

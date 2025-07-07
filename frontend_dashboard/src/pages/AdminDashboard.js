@@ -1,6 +1,6 @@
 import React from 'react';
 import { loadFromLocal } from '../utils/localStorage';
-import { cardStyle, dataTableStyle, secBtnStyle } from '../styles/constants';
+import { dataTableStyle, secBtnStyle } from '../styles/constants';
 
 // PUBLIC_INTERFACE
 function AdminDashboard({ setView }) {
@@ -18,29 +18,45 @@ function AdminDashboard({ setView }) {
   return (
     <div>
       <h1 style={{ color: "#1976d2", fontSize: 28 }}>Admin Dashboard</h1>
-      <div style={{ display: "flex", gap: 18, flexWrap: "wrap", margin: "20px 0" }}>
-        <div style={cardStyle}>
-          <h3>Total Employees</h3>
-          <div style={{ fontSize: 30, color: "#1976d2" }}>{users.filter(u => u.role === "employee").length}</div>
-        </div>
-        <div style={cardStyle}>
-          <h3>Attendance Today</h3>
-          <div style={{ fontSize: 30, color: "#1976d2" }}>
-            {
-              attendance.filter(a => a.date === today && a.clockIn && !a.clockOut).length
-              + " checked-in"
-            }
+      <div className="dashboard-grid-4">
+        <div className="dashboard-card">
+          <div>
+            <h3 style={{ margin: 0, marginBottom: 12 }}>Total Employees</h3>
+            <div style={{ fontSize: 30, color: "#1976d2", fontWeight: 700 }}>
+              {users.filter(u => u.role === "employee").length}
+            </div>
           </div>
         </div>
-        <div style={cardStyle}>
-          <h3>Leaves Pending</h3>
-          <div style={{ fontSize: 30, color: "#fbc02d" }}>{leaves.filter(l => l.status === "pending").length}</div>
-          <button style={secBtnStyle} onClick={() => setView("leave-requests")}>Approve Leaves</button>
+        <div className="dashboard-card">
+          <div>
+            <h3 style={{ margin: 0, marginBottom: 12 }}>Attendance Today</h3>
+            <div style={{ fontSize: 30, color: "#1976d2", fontWeight: 700 }}>
+              {attendance.filter(a => a.date === today && a.clockIn && !a.clockOut).length}
+            </div>
+            <div style={{ fontSize: 14, color: "var(--text-secondary)", marginTop: 4 }}>
+              checked-in
+            </div>
+          </div>
         </div>
-        <div style={cardStyle}>
-          <h3>Analytics</h3>
-          <div style={{ fontSize: 15, color: "#1976d2" }}>Overall reports</div>
-          <button style={secBtnStyle} onClick={() => setView("analytics")}>View Analytics</button>
+        <div className="dashboard-card">
+          <div>
+            <h3 style={{ margin: 0, marginBottom: 12 }}>Leaves Pending</h3>
+            <div style={{ fontSize: 30, color: "#fbc02d", fontWeight: 700 }}>
+              {leaves.filter(l => l.status === "pending").length}
+            </div>
+          </div>
+          <button style={{ ...secBtnStyle, marginTop: "auto", marginRight: 0, width: "100%" }} onClick={() => setView("leave-requests")}>
+            Approve Leaves
+          </button>
+        </div>
+        <div className="dashboard-card">
+          <div>
+            <h3 style={{ margin: 0, marginBottom: 12 }}>Analytics</h3>
+            <div style={{ fontSize: 15, color: "#1976d2", marginBottom: 16 }}>Overall reports</div>
+          </div>
+          <button style={{ ...secBtnStyle, marginTop: "auto", marginRight: 0, width: "100%" }} onClick={() => setView("analytics")}>
+            View Analytics
+          </button>
         </div>
       </div>
       <h2 style={{ marginTop: 36, marginBottom: 8, color: "#424242", fontWeight: 600 }}>Employees</h2>
@@ -72,10 +88,10 @@ function AdminDashboard({ setView }) {
               : null;
             return (
               <tr key={u.id}>
-                <td>{u.name}</td>
-                <td>{thisMonth}</td>
-                <td>{leavesApp.length}</td>
-                <td>{last ? last.date : "-"}</td>
+                <td data-label="Name">{u.name}</td>
+                <td data-label="Attendance (Month)">{thisMonth}</td>
+                <td data-label="Leaves Approved">{leavesApp.length}</td>
+                <td data-label="Last Attendance">{last ? last.date : "-"}</td>
               </tr>
             );
           })}

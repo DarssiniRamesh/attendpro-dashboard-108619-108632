@@ -49,6 +49,7 @@ function Sidebar({ user, setView, handleLogout, view }) {
 
   return (
     <nav
+      className="sidebar"
       style={{
         width: 220,
         background: "var(--bg-secondary)",
@@ -59,6 +60,8 @@ function Sidebar({ user, setView, handleLogout, view }) {
         alignItems: "stretch",
         paddingTop: "36px",
         gap: "6px",
+        position: "relative",
+        zIndex: 1000,
       }}
     >
       <h2 style={{

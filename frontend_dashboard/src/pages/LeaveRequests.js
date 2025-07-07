@@ -45,15 +45,15 @@ function LeaveRequests({ setView }) {
             .filter(l => l.status === "pending")
             .map(l => (
               <tr key={l.id}>
-                <td>{users.find(u => u.id === l.userId)?.name || "-"}</td>
-                <td>{l.date}</td>
-                <td style={{ maxWidth: 120 }}>{l.reason}</td>
-                <td style={{ color: "#fbc02d" }}>{l.status}</td>
-                <td>
-                  <button style={mainBtnStyle} onClick={() => handleDecision(l.id, "approved")}>Approve</button>
-                </td>
-                <td>
-                  <button style={{ ...mainBtnStyle, background: "#d32f2f" }} onClick={() => handleDecision(l.id, "rejected")}>Reject</button>
+                <td data-label="Employee">{users.find(u => u.id === l.userId)?.name || "-"}</td>
+                <td data-label="Date">{l.date}</td>
+                <td data-label="Reason" style={{ maxWidth: 200, wordWrap: "break-word" }}>{l.reason}</td>
+                <td data-label="Status" style={{ color: "#fbc02d" }}>{l.status}</td>
+                <td data-label="Actions">
+                  <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                    <button style={{ ...mainBtnStyle, marginRight: 0 }} onClick={() => handleDecision(l.id, "approved")}>Approve</button>
+                    <button style={{ ...mainBtnStyle, background: "#d32f2f", marginRight: 0 }} onClick={() => handleDecision(l.id, "rejected")}>Reject</button>
+                  </div>
                 </td>
               </tr>
             ))}

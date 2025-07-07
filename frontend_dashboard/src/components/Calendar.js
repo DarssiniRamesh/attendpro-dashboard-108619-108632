@@ -43,7 +43,16 @@ function Calendar({ user }) {
         <b>{year} - {String(month + 1).padStart(2, '0')}</b>
         <button style={secBtnStyle} onClick={nextMonth}>Next</button>
       </div>
-      <table style={{ width: "100%", background: "var(--bg-secondary)", borderRadius: 11, padding: 8, boxShadow: "0 2px 12px #0001", margin: "auto" }}>
+      <div style={{ overflowX: "auto", marginBottom: 16 }}>
+        <table style={{ 
+          width: "100%", 
+          minWidth: "300px",
+          background: "var(--bg-secondary)", 
+          borderRadius: 11, 
+          padding: 8, 
+          boxShadow: "0 2px 12px #0001", 
+          margin: "auto" 
+        }}>
         <thead>
           <tr style={{ textAlign: "center" }}>
             {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(d => <th style={{ padding: 3, color: "#1976d2" }} key={d}>{d}</th>)}
@@ -85,7 +94,8 @@ function Calendar({ user }) {
             return rows;
           })()}
         </tbody>
-      </table>
+        </table>
+      </div>
       <div style={{ marginTop: 22, textAlign: "center" }}>
         <span style={{ background: "#388e3c30", color: "#388e3c", padding: "2px 6px", borderRadius: 3 }}>Present</span>{" "}
         <span style={{ background: "#fbc02d30", color: "#fbc02d", padding: "2px 6px", borderRadius: 3 }}>Clocked In</span>{" "}

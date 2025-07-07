@@ -41,6 +41,11 @@ export const mainBtnStyle = {
   boxShadow: "0 2px 8px rgba(25, 118, 210, 0.3)",
   position: "relative",
   overflow: "hidden",
+  minHeight: "44px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  whiteSpace: "nowrap",
 };
 
 export const secBtnStyle = {
@@ -56,6 +61,11 @@ export const secBtnStyle = {
   marginTop: 8,
   transition: "all 0.3s ease",
   boxShadow: "0 2px 8px rgba(251, 192, 45, 0.3)",
+  minHeight: "40px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  whiteSpace: "nowrap",
 };
 
 export const dangerBtnStyle = {
