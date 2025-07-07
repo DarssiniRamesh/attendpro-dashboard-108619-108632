@@ -70,28 +70,56 @@ function LeaveApplication({ user, setView }) {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "60px auto", background: "var(--bg-secondary)", borderRadius: 12, boxShadow: "0 2px 12px #0001", padding: 28 }}>
-      <h2 style={{ color: "#1976d2", marginBottom: 22 }}>Apply for Leave</h2>
+    <div style={{ 
+      maxWidth: 380, 
+      margin: "40px auto", 
+      background: "var(--bg-secondary)", 
+      borderRadius: 12, 
+      boxShadow: "0 4px 16px var(--shadow-light)", 
+      padding: 24,
+      border: "1px solid var(--border-light)"
+    }}>
+      <h2 style={{ 
+        color: "#1976d2", 
+        marginBottom: 20,
+        fontSize: "var(--font-size-xl)",
+        fontWeight: "var(--font-weight-semibold)",
+        textAlign: "center"
+      }}>Apply for Leave</h2>
+      
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: 15 }}>
-          <label>Date:&nbsp;
-            <input type="date" value={date} onChange={e => setDate(e.target.value)} required style={inputStyle} />
-          </label>
+        <div className="form-group">
+          <label htmlFor="leave-date">Leave Date</label>
+          <input 
+            id="leave-date"
+            type="date" 
+            value={date} 
+            onChange={e => setDate(e.target.value)} 
+            required 
+            className="form-input"
+          />
         </div>
-        <div style={{ marginBottom: 18 }}>
-          <label>
-            Reason: <br/>
-            <textarea value={reason} onChange={e => setReason(e.target.value)} required rows={3} style={{ ...inputStyle, resize: "vertical", minHeight: 58 }} />
-          </label>
+        
+        <div className="form-group">
+          <label htmlFor="leave-reason">Reason for Leave</label>
+          <textarea 
+            id="leave-reason"
+            value={reason} 
+            onChange={e => setReason(e.target.value)} 
+            required 
+            rows={3} 
+            className="form-input form-textarea"
+            placeholder="Please provide a reason for your leave request..."
+          />
         </div>
-        <div style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
+        
+        <div className="form-button-group">
           <button 
             type="submit" 
+            className="form-button primary"
             style={{
-              ...mainBtnStyle,
               opacity: isSubmitting ? 0.7 : 1,
               cursor: isSubmitting ? 'not-allowed' : 'pointer',
-              flex: 1
             }}
             disabled={isSubmitting}
           >
@@ -99,11 +127,7 @@ function LeaveApplication({ user, setView }) {
           </button>
           <button 
             type="button" 
-            style={{
-              ...secBtnStyle,
-              marginTop: 0,
-              flex: 1
-            }}
+            className="form-button secondary"
             onClick={() => setView("user")}
             disabled={isSubmitting}
           >

@@ -25,20 +25,20 @@ function Login({ handleLogin, setView }) {
   return (
     <div
       style={{
-        maxWidth: 380,
-        margin: "80px auto 0 auto",
+        maxWidth: 360,
+        margin: "60px auto 0 auto",
         background: "var(--bg-secondary)",
-        borderRadius: 16,
+        borderRadius: 12,
         boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-        padding: "40px 36px",
+        padding: "32px 28px",
       }}
     >
       <h2
         style={{
           color: "#1976d2",
           fontWeight: "var(--font-weight-bold)",
-          fontSize: "var(--font-size-3xl)",
-          marginBottom: 12,
+          fontSize: "var(--font-size-2xl)",
+          marginBottom: 8,
           textAlign: "center",
           lineHeight: "var(--line-height-tight)",
         }}
@@ -48,9 +48,9 @@ function Login({ handleLogin, setView }) {
       <p
         style={{
           color: "var(--text-secondary)",
-          marginBottom: 36,
+          marginBottom: 24,
           textAlign: "center",
-          fontSize: "var(--font-size-base)",
+          fontSize: "var(--font-size-sm)",
           lineHeight: "var(--line-height-normal)",
         }}
       >
@@ -61,10 +61,10 @@ function Login({ handleLogin, setView }) {
         <div style={{
           background: 'rgba(211, 47, 47, 0.1)',
           color: '#d32f2f',
-          padding: '12px 16px',
-          borderRadius: 8,
-          marginBottom: 20,
-          fontSize: 14,
+          padding: '10px 14px',
+          borderRadius: 6,
+          marginBottom: 16,
+          fontSize: 13,
           textAlign: 'center',
         }}>
           {error}
@@ -72,50 +72,45 @@ function Login({ handleLogin, setView }) {
       )}
       
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: 20 }}>
+        <div className="form-group">
           <input
             type="text"
             autoFocus
             placeholder="Username"
             value={username}
             onChange={e => setUsername(e.target.value)}
-            style={inputStyle}
+            className="form-input"
             autoComplete="username"
             required
           />
         </div>
-        <div style={{ marginBottom: 24 }}>
+        <div className="form-group">
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={e => setPassword(e.target.value)}
-            style={inputStyle}
+            className="form-input"
             autoComplete="current-password"
             required
           />
         </div>
-        <button 
-          style={{
-            ...mainBtnStyle,
-            width: '100%',
-            marginBottom: 16,
-            padding: '16px 20px',
-            fontSize: "var(--font-size-base)",
-            fontWeight: "var(--font-weight-semibold)",
-          }} 
-          type="submit"
-        >
-          Login
-        </button>
+        <div className="form-button-group">
+          <button 
+            className="form-button primary"
+            style={{ width: '100%' }}
+            type="submit"
+          >
+            Login
+          </button>
+        </div>
         
         <button 
           type="button"
+          className="form-button secondary"
           style={{
-            ...secBtnStyle,
             width: '100%',
-            marginTop: 0,
-            marginRight: 0,
+            marginTop: 12,
           }}
           onClick={() => setView('register')}
         >
@@ -124,18 +119,18 @@ function Login({ handleLogin, setView }) {
       </form>
       
       <div style={{
-        marginTop: 28,
-        padding: '18px',
+        marginTop: 20,
+        padding: '14px',
         background: 'rgba(25, 118, 210, 0.1)',
-        borderRadius: 10,
-        fontSize: "var(--font-size-sm)",
+        borderRadius: 8,
+        fontSize: "var(--font-size-xs)",
         color: 'var(--text-secondary)',
         lineHeight: "var(--line-height-relaxed)",
       }}>
         <strong style={{ fontWeight: "var(--font-weight-semibold)", color: "var(--text-primary)" }}>
           Demo Accounts:
         </strong><br />
-        <span style={{ fontFamily: "monospace", fontSize: "var(--font-size-sm)" }}>
+        <span style={{ fontFamily: "monospace", fontSize: "var(--font-size-xs)" }}>
           Employee: alice / 1234<br />
           <strong style={{ color: "var(--text-accent)" }}>Demo Employee: demoemp / employee</strong><br />
           Admin: carol / admin<br />

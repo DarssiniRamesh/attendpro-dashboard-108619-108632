@@ -50,9 +50,9 @@ function LeaveRequests({ setView }) {
                 <td data-label="Reason" style={{ maxWidth: 200, wordWrap: "break-word" }}>{l.reason}</td>
                 <td data-label="Status" style={{ color: "#fbc02d" }}>{l.status}</td>
                 <td data-label="Actions">
-                  <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-                    <button style={{ ...mainBtnStyle, marginRight: 0 }} onClick={() => handleDecision(l.id, "approved")}>Approve</button>
-                    <button style={{ ...mainBtnStyle, background: "#d32f2f", marginRight: 0 }} onClick={() => handleDecision(l.id, "rejected")}>Reject</button>
+                  <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                    <button className="form-button success" style={{ fontSize: "var(--font-size-xs)", padding: "6px 12px", minHeight: "32px" }} onClick={() => handleDecision(l.id, "approved")}>Approve</button>
+                    <button className="form-button danger" style={{ fontSize: "var(--font-size-xs)", padding: "6px 12px", minHeight: "32px" }} onClick={() => handleDecision(l.id, "rejected")}>Reject</button>
                   </div>
                 </td>
               </tr>
@@ -60,7 +60,7 @@ function LeaveRequests({ setView }) {
         </tbody>
       </table>
       <div style={{ marginTop: 16 }}>
-        <button style={secBtnStyle} onClick={() => setView("admin")}>Back to Dashboard</button>
+        <button className="form-button secondary" onClick={() => setView("admin")}>Back to Dashboard</button>
       </div>
     </div>
   );

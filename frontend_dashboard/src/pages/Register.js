@@ -106,19 +106,20 @@ function Register({ handleRegister, setView }) {
   return (
     <div
       style={{
-        maxWidth: 420,
-        margin: "60px auto 0 auto",
+        maxWidth: 400,
+        margin: "40px auto 0 auto",
         background: "var(--bg-secondary)",
-        borderRadius: 16,
+        borderRadius: 12,
         boxShadow: "0 8px 32px rgba(0, 0, 0, 0.1)",
-        padding: "40px 36px",
+        padding: "32px 28px",
       }}
     >
       <h2
         style={{
           color: "#1976d2",
-          fontWeight: 700,
-          marginBottom: 8,
+          fontWeight: "var(--font-weight-bold)",
+          fontSize: "var(--font-size-2xl)",
+          marginBottom: 6,
           textAlign: "center",
         }}
       >
@@ -127,135 +128,116 @@ function Register({ handleRegister, setView }) {
       <p
         style={{
           color: "var(--text-secondary)",
-          marginBottom: 32,
+          marginBottom: 24,
           textAlign: "center",
-          fontSize: 14,
+          fontSize: "var(--font-size-sm)",
         }}
       >
         Join the AttendPro team
       </p>
       
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: 20 }}>
+        <div className="form-group">
           <input
             type="text"
             name="name"
             placeholder="Full Name"
             value={formData.name}
             onChange={handleChange}
-            style={{
-              ...inputStyle,
-              borderColor: errors.name ? '#d32f2f' : 'var(--border-color)',
-            }}
+            className={`form-input ${errors.name ? 'error' : ''}`}
             required
           />
           {errors.name && (
-            <div style={{ color: '#d32f2f', fontSize: 12, marginTop: 4 }}>
+            <span className="form-error">
               {errors.name}
-            </div>
+            </span>
           )}
         </div>
         
-        <div style={{ marginBottom: 20 }}>
+        <div className="form-group">
           <input
             type="text"
             name="username"
             placeholder="Username"
             value={formData.username}
             onChange={handleChange}
-            style={{
-              ...inputStyle,
-              borderColor: errors.username ? '#d32f2f' : 'var(--border-color)',
-            }}
+            className={`form-input ${errors.username ? 'error' : ''}`}
             required
           />
           {errors.username && (
-            <div style={{ color: '#d32f2f', fontSize: 12, marginTop: 4 }}>
+            <span className="form-error">
               {errors.username}
-            </div>
+            </span>
           )}
         </div>
         
-        <div style={{ marginBottom: 20 }}>
+        <div className="form-group">
           <input
             type="email"
             name="email"
             placeholder="Email Address"
             value={formData.email}
             onChange={handleChange}
-            style={{
-              ...inputStyle,
-              borderColor: errors.email ? '#d32f2f' : 'var(--border-color)',
-            }}
+            className={`form-input ${errors.email ? 'error' : ''}`}
             required
           />
           {errors.email && (
-            <div style={{ color: '#d32f2f', fontSize: 12, marginTop: 4 }}>
+            <span className="form-error">
               {errors.email}
-            </div>
+            </span>
           )}
         </div>
         
-        <div style={{ marginBottom: 20 }}>
+        <div className="form-group">
           <input
             type="password"
             name="password"
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
-            style={{
-              ...inputStyle,
-              borderColor: errors.password ? '#d32f2f' : 'var(--border-color)',
-            }}
+            className={`form-input ${errors.password ? 'error' : ''}`}
             required
           />
           {errors.password && (
-            <div style={{ color: '#d32f2f', fontSize: 12, marginTop: 4 }}>
+            <span className="form-error">
               {errors.password}
-            </div>
+            </span>
           )}
         </div>
         
-        <div style={{ marginBottom: 24 }}>
+        <div className="form-group">
           <input
             type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
             value={formData.confirmPassword}
             onChange={handleChange}
-            style={{
-              ...inputStyle,
-              borderColor: errors.confirmPassword ? '#d32f2f' : 'var(--border-color)',
-            }}
+            className={`form-input ${errors.confirmPassword ? 'error' : ''}`}
             required
           />
           {errors.confirmPassword && (
-            <div style={{ color: '#d32f2f', fontSize: 12, marginTop: 4 }}>
+            <span className="form-error">
               {errors.confirmPassword}
-            </div>
+            </span>
           )}
         </div>
         
-        <button 
-          style={{
-            ...mainBtnStyle,
-            width: '100%',
-            marginBottom: 12,
-            padding: '12px 20px',
-            fontSize: 16,
-          }} 
-          type="submit"
-        >
-          Create Account
-        </button>
+        <div className="form-button-group">
+          <button 
+            className="form-button primary"
+            style={{ width: '100%' }}
+            type="submit"
+          >
+            Create Account
+          </button>
+        </div>
         
         <button 
           type="button"
+          className="form-button secondary"
           style={{
-            ...secBtnStyle,
             width: '100%',
-            marginTop: 0,
-            marginRight: 0,
+            marginTop: 12,
           }}
           onClick={() => setView('login')}
         >
