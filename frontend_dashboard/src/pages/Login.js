@@ -137,7 +137,8 @@ function Login({ handleLogin, setView }) {
         </strong><br />
         <span style={{ fontFamily: "monospace", fontSize: "var(--font-size-sm)" }}>
           Employee: alice / 1234<br />
-          Admin: carol / admin
+          Admin: carol / admin<br />
+          <strong style={{ color: "var(--text-accent)" }}>Demo Admin: demo_admin / Demo@123</strong>
         </span>
       </div>
     </div>

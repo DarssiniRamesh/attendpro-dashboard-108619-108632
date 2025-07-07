@@ -11,6 +11,33 @@ export function getInitialUsers() {
 }
 
 // PUBLIC_INTERFACE
+export function ensureDemoAdminExists() {
+  /**
+   * Ensures a demo admin account exists in localStorage
+   * Creates one if it doesn't exist
+   */
+  const users = loadFromLocal('users', []);
+  
+  // Check if demo admin already exists
+  const demoAdmin = users.find(user => user.username === 'demo_admin');
+  
+  if (!demoAdmin) {
+    // Create demo admin account
+    const newDemoAdmin = {
+      id: Date.now() + 1000, // Ensure unique ID
+      name: "Demo Administrator",
+      username: "demo_admin",
+      email: "demo_admin@company.com",
+      role: "admin",
+      password: "Demo@123"
+    };
+    
+    users.push(newDemoAdmin);
+    saveToLocal('users', users);
+  }
+}
+
+// PUBLIC_INTERFACE
 export function registerUser(userData) {
   /**
    * Registers a new user and saves to localStorage
@@ -71,6 +98,7 @@ export function loadFromLocal(key, fallback) {
 export function initializeStorage() {
   /**
    * Initializes localStorage with default data if not already present
+   * Always ensures demo admin account exists
    */
   if (!localStorage.getItem("users"))
     saveToLocal("users", getInitialUsers());
@@ -78,4 +106,7 @@ export function initializeStorage() {
     saveToLocal("attendance", []);
   if (!localStorage.getItem("leaves"))
     saveToLocal("leaves", []);
+  
+  // Always ensure demo admin account exists
+  ensureDemoAdminExists();
 }
