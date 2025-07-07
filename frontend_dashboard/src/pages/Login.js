@@ -36,9 +36,11 @@ function Login({ handleLogin, setView }) {
       <h2
         style={{
           color: "#1976d2",
-          fontWeight: 700,
-          marginBottom: 8,
+          fontWeight: "var(--font-weight-bold)",
+          fontSize: "var(--font-size-3xl)",
+          marginBottom: 12,
           textAlign: "center",
+          lineHeight: "var(--line-height-tight)",
         }}
       >
         AttendPro
@@ -46,9 +48,10 @@ function Login({ handleLogin, setView }) {
       <p
         style={{
           color: "var(--text-secondary)",
-          marginBottom: 32,
+          marginBottom: 36,
           textAlign: "center",
-          fontSize: 14,
+          fontSize: "var(--font-size-base)",
+          lineHeight: "var(--line-height-normal)",
         }}
       >
         Employee Attendance Tracker
@@ -96,9 +99,10 @@ function Login({ handleLogin, setView }) {
           style={{
             ...mainBtnStyle,
             width: '100%',
-            marginBottom: 12,
-            padding: '12px 20px',
-            fontSize: 16,
+            marginBottom: 16,
+            padding: '16px 20px',
+            fontSize: "var(--font-size-base)",
+            fontWeight: "var(--font-weight-semibold)",
           }} 
           type="submit"
         >
@@ -120,16 +124,21 @@ function Login({ handleLogin, setView }) {
       </form>
       
       <div style={{
-        marginTop: 24,
-        padding: '16px',
+        marginTop: 28,
+        padding: '18px',
         background: 'rgba(25, 118, 210, 0.1)',
-        borderRadius: 8,
-        fontSize: 12,
+        borderRadius: 10,
+        fontSize: "var(--font-size-sm)",
         color: 'var(--text-secondary)',
+        lineHeight: "var(--line-height-relaxed)",
       }}>
-        <strong>Demo Accounts:</strong><br />
-        Employee: alice / 1234<br />
-        Admin: carol / admin
+        <strong style={{ fontWeight: "var(--font-weight-semibold)", color: "var(--text-primary)" }}>
+          Demo Accounts:
+        </strong><br />
+        <span style={{ fontFamily: "monospace", fontSize: "var(--font-size-sm)" }}>
+          Employee: alice / 1234<br />
+          Admin: carol / admin
+        </span>
       </div>
     </div>
   );

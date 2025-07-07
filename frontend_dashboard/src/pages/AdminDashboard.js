@@ -17,31 +17,75 @@ function AdminDashboard({ setView }) {
   
   return (
     <div>
-      <h1 style={{ color: "#1976d2", fontSize: 28 }}>Admin Dashboard</h1>
+      <h1 style={{ 
+        color: "#1976d2", 
+        fontSize: "var(--font-size-4xl)",
+        fontWeight: "var(--font-weight-bold)",
+        marginBottom: "28px",
+        lineHeight: "var(--line-height-tight)"
+      }}>Admin Dashboard</h1>
       <div className="dashboard-grid-4">
         <div className="dashboard-card">
           <div>
-            <h3 style={{ margin: 0, marginBottom: 12 }}>Total Employees</h3>
-            <div style={{ fontSize: 30, color: "#1976d2", fontWeight: 700 }}>
+            <h3 style={{ 
+              margin: 0, 
+              marginBottom: 16,
+              fontSize: "var(--font-size-lg)",
+              fontWeight: "var(--font-weight-semibold)",
+              color: "var(--text-primary)"
+            }}>Total Employees</h3>
+            <div style={{ 
+              fontSize: "var(--font-size-4xl)", 
+              color: "#1976d2", 
+              fontWeight: "var(--font-weight-bold)",
+              lineHeight: "var(--line-height-tight)"
+            }}>
               {users.filter(u => u.role === "employee").length}
             </div>
           </div>
         </div>
         <div className="dashboard-card">
           <div>
-            <h3 style={{ margin: 0, marginBottom: 12 }}>Attendance Today</h3>
-            <div style={{ fontSize: 30, color: "#1976d2", fontWeight: 700 }}>
+            <h3 style={{ 
+              margin: 0, 
+              marginBottom: 16,
+              fontSize: "var(--font-size-lg)",
+              fontWeight: "var(--font-weight-semibold)",
+              color: "var(--text-primary)"
+            }}>Attendance Today</h3>
+            <div style={{ 
+              fontSize: "var(--font-size-4xl)", 
+              color: "#1976d2", 
+              fontWeight: "var(--font-weight-bold)",
+              lineHeight: "var(--line-height-tight)"
+            }}>
               {attendance.filter(a => a.date === today && a.clockIn && !a.clockOut).length}
             </div>
-            <div style={{ fontSize: 14, color: "var(--text-secondary)", marginTop: 4 }}>
+            <div style={{ 
+              fontSize: "var(--font-size-sm)", 
+              color: "var(--text-secondary)", 
+              marginTop: 8,
+              fontWeight: "var(--font-weight-medium)"
+            }}>
               checked-in
             </div>
           </div>
         </div>
         <div className="dashboard-card">
           <div>
-            <h3 style={{ margin: 0, marginBottom: 12 }}>Leaves Pending</h3>
-            <div style={{ fontSize: 30, color: "#fbc02d", fontWeight: 700 }}>
+            <h3 style={{ 
+              margin: 0, 
+              marginBottom: 16,
+              fontSize: "var(--font-size-lg)",
+              fontWeight: "var(--font-weight-semibold)",
+              color: "var(--text-primary)"
+            }}>Leaves Pending</h3>
+            <div style={{ 
+              fontSize: "var(--font-size-4xl)", 
+              color: "#fbc02d", 
+              fontWeight: "var(--font-weight-bold)",
+              lineHeight: "var(--line-height-tight)"
+            }}>
               {leaves.filter(l => l.status === "pending").length}
             </div>
           </div>
@@ -51,15 +95,33 @@ function AdminDashboard({ setView }) {
         </div>
         <div className="dashboard-card">
           <div>
-            <h3 style={{ margin: 0, marginBottom: 12 }}>Analytics</h3>
-            <div style={{ fontSize: 15, color: "#1976d2", marginBottom: 16 }}>Overall reports</div>
+            <h3 style={{ 
+              margin: 0, 
+              marginBottom: 16,
+              fontSize: "var(--font-size-lg)",
+              fontWeight: "var(--font-weight-semibold)",
+              color: "var(--text-primary)"
+            }}>Analytics</h3>
+            <div style={{ 
+              fontSize: "var(--font-size-base)", 
+              color: "#1976d2", 
+              marginBottom: 20,
+              lineHeight: "var(--line-height-normal)"
+            }}>Overall reports</div>
           </div>
           <button style={{ ...secBtnStyle, marginTop: "auto", marginRight: 0, width: "100%" }} onClick={() => setView("analytics")}>
             View Analytics
           </button>
         </div>
       </div>
-      <h2 style={{ marginTop: 36, marginBottom: 8, color: "#424242", fontWeight: 600 }}>Employees</h2>
+      <h2 style={{ 
+        marginTop: 48, 
+        marginBottom: 20, 
+        color: "#424242", 
+        fontWeight: "var(--font-weight-semibold)",
+        fontSize: "var(--font-size-2xl)",
+        lineHeight: "var(--line-height-tight)"
+      }}>Employees</h2>
       <table className="data-table" style={dataTableStyle}>
         <thead>
           <tr>

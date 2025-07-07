@@ -37,10 +37,21 @@ function Calendar({ user }) {
 
   return (
     <div>
-      <h2 style={{ color: "#1976d2" }}>Attendance Calendar</h2>
+      <h2 style={{ 
+        color: "#1976d2", 
+        fontSize: "var(--font-size-3xl)",
+        fontWeight: "var(--font-weight-bold)",
+        marginBottom: "24px"
+      }}>Attendance Calendar</h2>
       <div style={{ display: "flex", gap: 12, alignItems: "center", justifyContent: "center", margin: "14px 0" }}>
         <button style={secBtnStyle} onClick={prevMonth}>Prev</button>
-        <b>{year} - {String(month + 1).padStart(2, '0')}</b>
+        <b style={{ 
+          fontSize: "var(--font-size-lg)",
+          fontWeight: "var(--font-weight-semibold)",
+          color: "var(--text-primary)"
+        }}>
+          {year} - {String(month + 1).padStart(2, '0')}
+        </b>
         <button style={secBtnStyle} onClick={nextMonth}>Next</button>
       </div>
       <div style={{ overflowX: "auto", marginBottom: 16 }}>
@@ -55,7 +66,12 @@ function Calendar({ user }) {
         }}>
         <thead>
           <tr style={{ textAlign: "center" }}>
-            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(d => <th style={{ padding: 3, color: "#1976d2" }} key={d}>{d}</th>)}
+            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(d => <th style={{ 
+              padding: "8px 4px", 
+              color: "#1976d2",
+              fontSize: "var(--font-size-sm)",
+              fontWeight: "var(--font-weight-semibold)"
+            }} key={d}>{d}</th>)}
           </tr>
         </thead>
         <tbody>
@@ -82,8 +98,12 @@ function Calendar({ user }) {
                   fontWeight: att ? 700 : 400,
                   padding: "4px 2px"
                 }}>
-                  <span style={{ fontSize: 13 }}>{d.getDate()}</span><br />
-                  <span style={{ fontSize: 10 }}>{att ? text : ""}</span>
+                  <span style={{ fontSize: "var(--font-size-sm)", fontWeight: "var(--font-weight-medium)" }}>
+                    {d.getDate()}
+                  </span><br />
+                  <span style={{ fontSize: "var(--font-size-xs)", fontWeight: "var(--font-weight-medium)" }}>
+                    {att ? text : ""}
+                  </span>
                 </td>);
               if (((idx + firstWDay + 1) % 7 === 0) || idx === days.length - 1) {
                 rows.push(<tr key={"row" + idx}>{row}</tr>);
@@ -97,8 +117,22 @@ function Calendar({ user }) {
         </table>
       </div>
       <div style={{ marginTop: 22, textAlign: "center" }}>
-        <span style={{ background: "#388e3c30", color: "#388e3c", padding: "2px 6px", borderRadius: 3 }}>Present</span>{" "}
-        <span style={{ background: "#fbc02d30", color: "#fbc02d", padding: "2px 6px", borderRadius: 3 }}>Clocked In</span>{" "}
+        <span style={{ 
+          background: "#388e3c30", 
+          color: "#388e3c", 
+          padding: "6px 12px", 
+          borderRadius: 6,
+          fontSize: "var(--font-size-sm)",
+          fontWeight: "var(--font-weight-medium)"
+        }}>Present</span>{" "}
+        <span style={{ 
+          background: "#fbc02d30", 
+          color: "#fbc02d", 
+          padding: "6px 12px", 
+          borderRadius: 6,
+          fontSize: "var(--font-size-sm)",
+          fontWeight: "var(--font-weight-medium)"
+        }}>Clocked In</span>{" "}
       </div>
     </div>
   );

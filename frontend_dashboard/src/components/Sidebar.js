@@ -9,14 +9,18 @@ function SidebarButton({ label, onClick, active, style }) {
         background: active ? "#1976d2" : "transparent",
         color: active ? "#fff" : "var(--text-primary)",
         border: "none",
-        padding: "10px 24px",
-        borderRadius: 6,
+        padding: "12px 24px",
+        borderRadius: 8,
         textAlign: "left",
-        fontWeight: 500,
-        fontSize: 16,
-        transition: "background 0.1s",
-        margin: "3px 12px",
+        fontWeight: "var(--font-weight-medium)",
+        fontSize: "var(--font-size-base)",
+        lineHeight: "var(--line-height-normal)",
+        transition: "all 0.2s ease",
+        margin: "4px 12px",
         cursor: "pointer",
+        minHeight: "44px",
+        display: "flex",
+        alignItems: "center",
         ...style,
       }}
     >
@@ -66,10 +70,11 @@ function Sidebar({ user, setView, handleLogout, view }) {
     >
       <h2 style={{
         color: "#1976d2", // primary
-        margin: "0 0 25px 22px",
-        fontWeight: 700,
-        fontSize: 20,
-        letterSpacing: 2,
+        margin: "0 0 28px 24px",
+        fontWeight: "var(--font-weight-bold)",
+        fontSize: "var(--font-size-xl)",
+        letterSpacing: "0.5px",
+        lineHeight: "var(--line-height-tight)",
       }}>AttendPro</h2>
       <div style={{ flex: 1 }}>
         {navs.map(({ label, view: v }) => (
@@ -87,8 +92,16 @@ function Sidebar({ user, setView, handleLogout, view }) {
         active={false}
         style={{ marginBottom: 28, color: "#d32f2f" }}
       />
-      <div style={{ fontSize: 13, color: "var(--text-secondary)", margin: "12px" }}>
-        <strong>{user.name}</strong><br />({user.role})
+      <div style={{ 
+        fontSize: "var(--font-size-sm)", 
+        color: "var(--text-secondary)", 
+        margin: "16px 20px",
+        lineHeight: "var(--line-height-normal)"
+      }}>
+        <strong style={{ fontWeight: "var(--font-weight-semibold)" }}>
+          {user.name}
+        </strong><br />
+        <span style={{ fontSize: "var(--font-size-xs)" }}>({user.role})</span>
       </div>
     </nav>
   );
