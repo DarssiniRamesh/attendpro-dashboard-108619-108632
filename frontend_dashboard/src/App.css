@@ -17,6 +17,12 @@
   --error-color: #dc3545;
   --info-color: #17a2b8;
   
+  /* Custom Scrollbar Colors - Light Theme */
+  --scrollbar-track: #f5f7fa;
+  --scrollbar-thumb: #c8d1dc;
+  --scrollbar-thumb-hover: #1976d2;
+  --scrollbar-thumb-active: #1565c0;
+  
   /* Typography Scale - Accessible font sizes */
   --font-size-xs: 12px;
   --font-size-sm: 14px;
@@ -42,6 +48,101 @@
   --font-weight-extrabold: 800;
 }
 
+/* ===== CUSTOM SCROLLBAR STYLES ===== */
+/* Modern, slick scrollbar design that works across all browsers */
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+  border: 1px solid var(--scrollbar-track);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+  transform: scaleY(1.1);
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--scrollbar-thumb-active);
+  transform: scaleY(1.2);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Enhanced scrollbar for specific containers */
+.app-main-content,
+.sidebar,
+.data-table,
+.overflow-y-auto,
+.overflow-x-auto {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Custom scrollbar for modal and card containers */
+.dashboard-card::-webkit-scrollbar,
+.data-table::-webkit-scrollbar,
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.dashboard-card::-webkit-scrollbar-thumb,
+.data-table::-webkit-scrollbar-thumb,
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 8px;
+  border: none;
+}
+
+.dashboard-card::-webkit-scrollbar-thumb:hover,
+.data-table::-webkit-scrollbar-thumb:hover,
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+  box-shadow: 0 2px 4px rgba(25, 118, 210, 0.2);
+}
+
+/* Invisible scrollbar for horizontal overflow areas */
+.overflow-x-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.overflow-x-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced scroll behavior for main content areas */
+.app-main-content main {
+  scroll-behavior: smooth;
+}
+
 [data-theme="dark"] {
   /* Dark theme colors */
   --bg-primary: #121212;
@@ -59,6 +160,12 @@
   --warning-color: #ff9800;
   --error-color: #f44336;
   --info-color: #2196f3;
+  
+  /* Custom Scrollbar Colors - Dark Theme */
+  --scrollbar-track: #1e1e1e;
+  --scrollbar-thumb: #4a4a4a;
+  --scrollbar-thumb-hover: #64b5f6;
+  --scrollbar-thumb-active: #42a5f5;
 }
 
 .App {
