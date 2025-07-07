@@ -4,6 +4,7 @@ import { initializeStorage, loadFromLocal } from "./utils/localStorage";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import UserDashboard from "./pages/UserDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import AttendanceCalendar from "./pages/AttendanceCalendar";
@@ -39,7 +40,7 @@ function App() {
   const [user, setUser] = useState(null);
 
   // ---------- ROUTING & VIEW STATE ----------
-  // "user", "admin", "login", "apply-leave", "leave-requests", "attendance", "analytics"
+  // "user", "admin", "login", "register", "apply-leave", "leave-requests", "attendance", "analytics"
   const [view, setView] = useState("login");
 
   // On logout, return to login screen and reset
@@ -57,14 +58,22 @@ function App() {
     if (found) {
       setUser(found);
       setView(found.role === "admin" ? "admin" : "user");
-    } else {
-      alert("Invalid username or password");
+      return true;
     }
+    return false;
   };
 
   // ---------- RENDER CURRENT VIEW ----------
   const renderView = () => {
-    if (!user) return <Login handleLogin={handleLogin} />;
+    if (!user) {
+      switch (view) {
+        case "register":
+          return <Register setView={setView} />;
+        case "login":
+        default:
+          return <Login handleLogin={handleLogin} setView={setView} />;
+      }
+    }
 
     switch (view) {
       case "user":
@@ -80,7 +89,7 @@ function App() {
       case "analytics":
         return user.role === "admin" ? <AnalyticsDashboard /> : null;
       default:
-        return <Login handleLogin={handleLogin} />;
+        return <Login handleLogin={handleLogin} setView={setView} />;
     }
   };
 

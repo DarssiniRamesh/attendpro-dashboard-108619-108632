@@ -35,52 +35,134 @@ function UserDashboard({ user, setView }) {
   };
 
   return (
-    <div>
-      <h1 style={{ color: "#1976d2", fontSize: 28, fontWeight: 700 }}>
-        Welcome, {user.name}
-      </h1>
-      <div style={{ display: "flex", gap: 28, marginTop: 22, flexWrap: "wrap" }}>
+    <div className="fade-in" style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <div style={{ marginBottom: 32 }}>
+        <h1 style={{ 
+          color: "var(--text-accent)", 
+          fontSize: 32, 
+          fontWeight: 700,
+          marginBottom: 8,
+          background: "linear-gradient(135deg, #1976d2, #1565c0)",
+          backgroundClip: "text",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent"
+        }}>
+          Welcome back, {user.name}! 👋
+        </h1>
+        <p style={{ 
+          color: "var(--text-secondary)", 
+          fontSize: 16,
+          margin: 0 
+        }}>
+          Here's your attendance overview for today
+        </p>
+      </div>
+      
+      <div style={{ 
+        display: "grid", 
+        gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", 
+        gap: 24, 
+        marginBottom: 40 
+      }}>
         <div className="dashboard-card" style={cardStyle}>
-          <h3 style={{ margin: 0 }}>Today's Attendance</h3>
-          <div style={{ fontSize: 18, margin: "12px 0" }}>
+          <div style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+            <span style={{ fontSize: 24, marginRight: 12 }}>⏰</span>
+            <h3 style={{ margin: 0, color: "var(--text-primary)" }}>Today's Attendance</h3>
+          </div>
+          <div style={{ fontSize: 16, margin: "16px 0", lineHeight: 1.5 }}>
             {
               todayAtt
                 ? (todayAtt.clockOut
-                  ? <>Clocked in: <b>{todayAtt.clockIn}</b><br />Clocked out: <b>{todayAtt.clockOut}</b></>
-                  : <>Clocked in: <b>{todayAtt.clockIn}</b><br />Status: <b>Working</b></>)
-                : <span style={{ color: "#d32f2f" }}>Not marked</span>
+                  ? <div>
+                      <div style={{ color: "var(--success-color)", fontWeight: 600 }}>✅ Complete</div>
+                      <div style={{ marginTop: 8, fontSize: 14 }}>
+                        In: <strong>{todayAtt.clockIn}</strong><br />
+                        Out: <strong>{todayAtt.clockOut}</strong>
+                      </div>
+                    </div>
+                  : <div>
+                      <div style={{ color: "var(--info-color)", fontWeight: 600 }}>🔄 In Progress</div>
+                      <div style={{ marginTop: 8, fontSize: 14 }}>
+                        Clocked in: <strong>{todayAtt.clockIn}</strong><br />
+                        Status: <strong>Working</strong>
+                      </div>
+                    </div>)
+                : <div style={{ color: "var(--warning-color)", fontWeight: 600 }}>⏳ Not Started</div>
             }
           </div>
           <button
-            style={mainBtnStyle}
+            style={{
+              ...mainBtnStyle,
+              width: "100%",
+              opacity: (todayAtt && todayAtt.clockIn && todayAtt.clockOut) ? 0.6 : 1,
+              cursor: (todayAtt && todayAtt.clockIn && todayAtt.clockOut) ? "not-allowed" : "pointer"
+            }}
             onClick={handlePunch}
             disabled={todayAtt && todayAtt.clockIn && todayAtt.clockOut}
           >
-            {(!todayAtt && "Clock In") || (todayAtt && !todayAtt.clockOut && "Clock Out") || "Done"}
+            {(!todayAtt && "🕐 Clock In") || (todayAtt && !todayAtt.clockOut && "🕐 Clock Out") || "✅ Complete"}
           </button>
         </div>
+        
         <div className="dashboard-card" style={cardStyle}>
-          <h3 style={{ margin: 0 }}>Leaves Taken</h3>
-          <div style={{ fontSize: 32, color: "#1976d2", fontWeight: 700 }}>
+          <div style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+            <span style={{ fontSize: 24, marginRight: 12 }}>🏖️</span>
+            <h3 style={{ margin: 0, color: "var(--text-primary)" }}>Leave Balance</h3>
+          </div>
+          <div style={{ 
+            fontSize: 36, 
+            color: "#1976d2", 
+            fontWeight: 700,
+            marginBottom: 8,
+            textAlign: "center"
+          }}>
             {leaves.filter(l => l.status === "approved").length}
           </div>
-          <div style={{ margin: "12px 0" }}>Approved Leaves</div>
-          <button style={{ ...secBtnStyle, fontSize: 15 }} onClick={() => setView("apply-leave")}>
-            Apply for Leave
+          <div style={{ margin: "12px 0", textAlign: "center", color: "var(--text-secondary)" }}>
+            Approved Leaves This Year
+          </div>
+          <button 
+            style={{ ...secBtnStyle, fontSize: 15, width: "100%" }} 
+            onClick={() => setView("apply-leave")}
+          >
+            📝 Apply for Leave
           </button>
         </div>
+        
         <div className="dashboard-card" style={cardStyle}>
-          <h3 style={{ margin: 0 }}>View Attendance</h3>
-          <div style={{ fontSize: 18, margin: "12px 0" }}>
-            Full calendar of your attendance.
+          <div style={{ display: "flex", alignItems: "center", marginBottom: 16 }}>
+            <span style={{ fontSize: 24, marginRight: 12 }}>📊</span>
+            <h3 style={{ margin: 0, color: "var(--text-primary)" }}>Attendance History</h3>
           </div>
-          <button style={secBtnStyle} onClick={() => setView("attendance")}>
-            Attendance Calendar
+          <div style={{ 
+            fontSize: 18, 
+            margin: "16px 0", 
+            color: "var(--text-secondary)",
+            textAlign: "center"
+          }}>
+            View your complete attendance calendar and track your progress
+          </div>
+          <button 
+            style={{ ...secBtnStyle, width: "100%" }} 
+            onClick={() => setView("attendance")}
+          >
+            📅 View Calendar
           </button>
         </div>
       </div>
-      <div style={{ marginTop: 36 }}>
-        <h2 style={{ fontWeight: 600, color: "#424242", fontSize: 20, marginBottom: 8 }}>Recent Attendance</h2>
+      
+      <div style={{ marginTop: 48 }}>
+        <h2 style={{ 
+          fontWeight: 600, 
+          color: "var(--text-primary)", 
+          fontSize: 24, 
+          marginBottom: 16,
+          display: "flex",
+          alignItems: "center",
+          gap: 8
+        }}>
+          📋 Recent Attendance
+        </h2>
         <AttendanceTable attendance={attendance.slice(-7).reverse()} showUser={false} />
       </div>
     </div>
